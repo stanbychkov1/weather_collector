@@ -1,0 +1,26 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+.git
+.gitignore
+.venv
+.vscode
+
+# Docker
+Dockerfile
+docker-compose.yaml
+
+.env
+.env2
+**/.DS_Store
+*.md
+.python-version
+nginx.conf
+setup.cfg
+requests.http
+**/db.sqlite3
+pyproject.toml
+dump.json
+*.rar

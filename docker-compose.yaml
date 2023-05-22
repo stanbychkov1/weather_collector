@@ -1,0 +1,43 @@
+version: '3.3'
+
+volumes:
+  postgres_data:
+  media_volume:
+
+services:
+  db:
+    image: postgres:12.4
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env
+
+  api:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    restart: always
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - '8000:8000'
+    env_file:
+      - ./.env
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+  celery:
+    restart: always
+    build:
+      context: .
+    command: celery -A weather_collector worker -B -l info --concurrency 1 -P solo
+    volumes:
+      - ./web:/web
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+      - redis
+      - api
