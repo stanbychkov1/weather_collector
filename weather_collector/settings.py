@@ -150,8 +150,8 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_BEAT_SCHEDULE = {
-      'add-every-10-seconds': {
+      'add-every-hour': {
         'task': 'weather_collector',
-        'schedule': crontab(minute=0, hour='*/1')
+        'schedule': crontab(minute=20, hour='*/1')
       }
 }
