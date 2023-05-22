@@ -9,4 +9,3 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE',
 app = Celery('dwe')
 app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
-

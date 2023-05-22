@@ -11,4 +11,3 @@ class WeatherAPIView(generics.ListAPIView):
         qty = models.City.objects.count()
         queryset = models.Reading.objects.select_related('city')[:qty]
         return queryset
-

@@ -56,8 +56,7 @@ ROOT_URLCONF = 'weather_collector.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -153,8 +152,6 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_BEAT_SCHEDULE = {
       'add-every-10-seconds': {
         'task': 'weather_collector',
-        'schedule': 10.0
-            # crontab(minute=4, hour='*/1')
+        'schedule': crontab(minute=0, hour='*/1')
       }
 }
-# CELERY_IMPORTS = ('collector.tasks',)
